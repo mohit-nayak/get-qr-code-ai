@@ -5,15 +5,21 @@ import { useCallback, useState } from "react"
 import { scanDestinationData, destinationEnum } from "@/constants/destination"
 import SelectCard from "@/components/pages/home/select-card"
 import ScanDestinationForm from "@/components/pages/home/forms/scan-destination/scan-destination-form"
-import { Button } from "@/components/ui/button"
+import { useUrlStore } from "@/hook/useUrlStore"
 
 interface ScanDestinationProps {}
 
 const ScanDestination = ({}: ScanDestinationProps) => {
   const [currentIndex, setCurrentIndex] = useState<number>(destinationEnum?.url)
 
+  const { setUrl } = useUrlStore((state) => ({
+    setUrl: state.setUrl,
+  }))
+
   const handleToogleCard = useCallback(
     (value: number) => {
+      if (currentIndex === value) return
+      setUrl("")
       setCurrentIndex(value)
     },
     [currentIndex],

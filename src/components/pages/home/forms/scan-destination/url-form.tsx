@@ -12,10 +12,15 @@ import { urlFormSchema, urlFormSchemaType } from "@/schema/url-schema"
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useUrlStore } from "@/hook/useUrlStore"
 
 interface UrlFormProps {}
 
 const UrlForm = ({}: UrlFormProps) => {
+  const { setUrl } = useUrlStore((state) => ({
+    setUrl: state.setUrl,
+  }))
+
   const form = useForm<urlFormSchemaType>({
     resolver: zodResolver(urlFormSchema),
     defaultValues: {
@@ -23,13 +28,18 @@ const UrlForm = ({}: UrlFormProps) => {
     },
   })
 
-  const onSubmit = (values:urlFormSchemaType) => {
-     console.log(values)
+  const onSubmit = (values: urlFormSchemaType) => {
+    setUrl(values?.url)
+    form.reset()
   }
 
   return (
     <Form {...form}>
-      <form id="main-form" onSubmit={form.handleSubmit(onSubmit)} className="px-1">
+      <form
+        id="main-form"
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="px-1"
+      >
         <FormField
           control={form.control}
           name="url"
