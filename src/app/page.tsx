@@ -1,5 +1,6 @@
 import Container from "@/components/global/container";
 import DownloadButton from "@/components/pages/home/download-button";
+import PreviewQR from "@/components/pages/home/preview-qr";
 import QrOptions from "@/components/pages/home/qr-options";
 import { PLATFORM_NAME } from "@/config/platform-config";
 
@@ -9,16 +10,19 @@ const page = ({}: pageProps) => {
   return (
     <Container className="h-screen">
       <section className="my-16">
-        <h2 className="text-lg font-medium">
+        <h2 className="text-xl font-bold">
           {PLATFORM_NAME}: Free QR Code Generator
         </h2>
 
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-2 mt-8">
           {/* settings section    */}
           <QrOptions />
           
           {/* qr preveiw section  */}
-          <DownloadButton />
+          <div className="flex flex-col gap-4">
+            <PreviewQR />
+            <DownloadButton />
+          </div>
         </div>
 
       </section>

@@ -11,7 +11,7 @@ interface QrOptionsProps {}
 
 const QrOptions = ({}: QrOptionsProps) => {
   return (
-    <section className="mt-8">
+    <section>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
           <ContentTriggerButton

@@ -1,5 +1,6 @@
 export const getSmsFormatURL = (code:string , mobileNumber:string, message?:string) => {
-    
+    return `SMSTO:${code+mobileNumber}:${message}`
+
 }
 
 export const getEmailFormatURL = (email:string , subject?:string , message?:string) => {
