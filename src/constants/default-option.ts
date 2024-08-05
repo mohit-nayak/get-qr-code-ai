@@ -1,18 +1,19 @@
 import type {
-    DrawType,
-    TypeNumber,
+  DrawType,
+  TypeNumber,
   Mode,
   ErrorCorrectionLevel,
   DotType,
   CornerSquareType,
   CornerDotType,
-  ShapeType
+  ShapeType,
+  Options,
 } from "qr-code-styling"
 
 import { PLATFORM_URL } from "@/config/platform-config"
+import { colorsList } from "./colors"
 
-
-export const defaultQrOptions = {
+export const defaultQrOptions: Options = {
   width: 200,
   height: 200,
   type: "svg" as DrawType,
@@ -25,20 +26,19 @@ export const defaultQrOptions = {
   },
   imageOptions: {
     hideBackgroundDots: true,
-    imageSize: 0.3,
-    margin: 0,
+    imageSize: 0.6,
+    margin: 2,
     crossOrigin: "anonymous",
   },
   dotsOptions: {
-    color: "#222222",
+    color: colorsList?.[0],
     type: "dots" as DotType,
   },
+
   cornersSquareOptions: {
-    color: "#222222",
     type: "square" as CornerSquareType,
   },
   cornersDotOptions: {
-    color: "#222222",
     type: "square" as CornerDotType,
   },
   shape: "circle" as ShapeType,

@@ -4,6 +4,7 @@ import { useEffect, useState, useRef, ElementRef } from "react"
 import QRCodeStyling from "qr-code-styling"
 
 import { useQrOptions } from "@/hook/useQrOptions"
+import { cn } from "@/lib/utils"
 
 export const QrRenderer = () => {
   const { options, setQrOptions } = useQrOptions((state) => ({
@@ -34,7 +35,13 @@ export const QrRenderer = () => {
 
   return (
     <section className="flex items-center justify-center">
-      <div className="flex items-center justify-center overflow-hidden rounded-full border-4 border-black p-1">
+      <div
+        style={{ borderColor: options?.dotsOptions?.color }}
+        className={cn(
+          "flex items-center justify-center overflow-hidden border-4 ",
+          options?.shape === "circle" ? "rounded-full p-1" : "rounded-lg",
+        )}
+      >
         <div ref={ref} className="" />
       </div>
     </section>

@@ -15,7 +15,6 @@ const FileForm = ({}: FileFormProps) => {
     if (!file) {
       return toast.error("Please upload a file")
     }
-
   }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
