@@ -16,13 +16,13 @@ import { colorsList } from "./colors"
 export const defaultQrOptions: Options = {
   width: 200,
   height: 200,
-  type: "svg" as DrawType,
+  type: "canvas" as DrawType,
   data: PLATFORM_URL,
-  margin: 0,
+  margin: 1.5,
   qrOptions: {
-    typeNumber: 0 as TypeNumber,
+    typeNumber:4 as TypeNumber,
     mode: "Byte" as Mode,
-    errorCorrectionLevel: "Q" as ErrorCorrectionLevel,
+    errorCorrectionLevel: "M" as ErrorCorrectionLevel,
   },
   backgroundOptions:{
     color:"transparent"
@@ -35,7 +35,7 @@ export const defaultQrOptions: Options = {
   },
   dotsOptions: {
     color: colorsList?.[0],
-    type: "dots" as DotType,
+    type: "classy-rounded" as DotType,
   },
 
   cornersSquareOptions: {
@@ -44,5 +44,5 @@ export const defaultQrOptions: Options = {
   cornersDotOptions: {
     type: "square" as CornerDotType,
   },
-  shape: "circle" as ShapeType,
+  shape: "square" as ShapeType,
 }

@@ -1,9 +1,9 @@
 "use client"
 
-import { useEffect, useRef, ElementRef, use } from "react"
+import { useEffect, useRef, ElementRef } from "react"
 
-import { useQrOptions } from "@/hook/useQrOptions"
 import { cn } from "@/lib/utils"
+import { useQrOptions } from "@/hook/useQrOptions"
 import { useQRCodeStyling } from "@/hook/useQrCodeStyling"
 import { defaultQrOptions } from "@/constants/default-option"
 
@@ -31,6 +31,8 @@ export const QrRenderer = () => {
       qrCode?.update(options)
     }
   }, [options, qrCode])
+
+
 
   const shapeChange =
     options?.shape === "circle" ? "rounded-full" : "rounded-lg"

@@ -5,21 +5,23 @@ import { useCallback, useState } from "react"
 import { scanDestinationData, destinationEnum } from "@/constants/destination"
 import SelectCard from "@/components/pages/home/select-card"
 import ScanDestinationForm from "@/components/pages/home/forms/scan-destination/scan-destination-form"
-import { useUrlStore } from "@/hook/useUrlStore"
+import { useQrOptions } from "@/hook/useQrOptions"
+import { DEFAULT_PLATFORM_URL } from "@/config/platform-config"
 
 interface ScanDestinationProps {}
 
 const ScanDestination = ({}: ScanDestinationProps) => {
   const [currentIndex, setCurrentIndex] = useState<number>(destinationEnum?.url)
 
-  const { setUrl } = useUrlStore((state) => ({
-    setUrl: state.setUrl,
+  const { setQrOptions , options } = useQrOptions((state) => ({
+    setQrOptions: state?.setQrOptions,
+    options: state?.options,
   }))
 
   const handleToogleCard = useCallback(
     (value: number) => {
       if (currentIndex === value) return
-      setUrl("")
+      setQrOptions({data:DEFAULT_PLATFORM_URL})
       setCurrentIndex(value)
     },
     [currentIndex],

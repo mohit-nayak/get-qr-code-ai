@@ -12,15 +12,15 @@ import { EmailFormSchema, EmailFormSchemaType } from "@/schema/email-schema"
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useUrlStore } from "@/hook/useUrlStore"
 import { Textarea } from "@/components/ui/textarea"
 import { getEmailFormatURL } from "@/lib/url-formatter"
+import { useQrOptions } from "@/hook/useQrOptions"
 
 interface EmailFormProps {}
 
 const EmailForm = ({}: EmailFormProps) => {
-  const { setUrl } = useUrlStore((state) => ({
-    setUrl: state.setUrl,
+  const { setQrOptions } = useQrOptions((state) => ({
+    setQrOptions: state?.setQrOptions,
   }))
 
   const form = useForm<EmailFormSchemaType>({
@@ -35,7 +35,7 @@ const EmailForm = ({}: EmailFormProps) => {
   const onSubmit = (values: EmailFormSchemaType) => {
     const { email, message, subject } = values
     const url = getEmailFormatURL(email, subject, message)
-    setUrl(url)
+    setQrOptions({data:url})
     form.reset()
   }
 

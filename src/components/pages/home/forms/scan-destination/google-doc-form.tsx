@@ -8,17 +8,20 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { googleDocFormSchema, googleDocFormSchemaType } from "@/schema/google-doc-schema"
+import {
+  googleDocFormSchema,
+  googleDocFormSchemaType,
+} from "@/schema/google-doc-schema"
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useUrlStore } from "@/hook/useUrlStore"
+import { useQrOptions } from "@/hook/useQrOptions"
 
 interface GoogleDocFormProps {}
 
 const GoogleDocForm = ({}: GoogleDocFormProps) => {
-  const { setUrl } = useUrlStore((state) => ({
-    setUrl: state.setUrl,
+  const { setQrOptions } = useQrOptions((state) => ({
+    setQrOptions: state?.setQrOptions,
   }))
 
   const form = useForm<googleDocFormSchemaType>({
@@ -29,7 +32,7 @@ const GoogleDocForm = ({}: GoogleDocFormProps) => {
   })
 
   const onSubmit = (values: googleDocFormSchemaType) => {
-    setUrl(values?.googleDocURL)
+    setQrOptions({ data: values?.googleDocURL })
     form.reset()
   }
 

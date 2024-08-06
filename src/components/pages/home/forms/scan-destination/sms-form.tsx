@@ -17,13 +17,14 @@ import { useUrlStore } from "@/hook/useUrlStore"
 import { Textarea } from "@/components/ui/textarea"
 import { CountrySelect } from "@/components/global/country-select"
 import { getSmsFormatURL } from "@/lib/url-formatter"
+import { useQrOptions } from "@/hook/useQrOptions"
 
 interface SmsFormProps {}
 
 const SmsForm = ({}: SmsFormProps) => {
   const [value, setValue] = React.useState("+91")
-  const { setUrl } = useUrlStore((state) => ({
-    setUrl: state.setUrl,
+  const { setQrOptions } = useQrOptions((state) => ({
+    setQrOptions: state.setQrOptions,
   }))
 
   const form = useForm<smsFormSchemaType>({
@@ -40,8 +41,8 @@ const SmsForm = ({}: SmsFormProps) => {
       values?.phoneNumber,
       values?.message,
     )
-    setUrl(finalUrl)
-    form.reset()
+    setQrOptions({data:finalUrl})
+    form?.reset()
   }
 
   return (

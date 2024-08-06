@@ -12,13 +12,13 @@ import { facebookFormSchema, facebookFormSchemaType } from "@/schema/facebook-sc
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useUrlStore } from "@/hook/useUrlStore"
+import { useQrOptions } from "@/hook/useQrOptions"
 
 interface FacebookFormProps {}
 
 const FacebookForm = ({}: FacebookFormProps) => {
-  const { setUrl } = useUrlStore((state) => ({
-    setUrl: state.setUrl,
+  const { setQrOptions } = useQrOptions((state) => ({
+    setQrOptions: state?.setQrOptions,
   }))
 
   const form = useForm<facebookFormSchemaType>({
@@ -29,7 +29,7 @@ const FacebookForm = ({}: FacebookFormProps) => {
   })
 
   const onSubmit = (values: facebookFormSchemaType) => {
-    setUrl(values?.facebookURL)
+    setQrOptions({data:values?.facebookURL})
     form.reset()
   }
 

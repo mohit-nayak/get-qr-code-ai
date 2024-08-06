@@ -1,5 +1,8 @@
 export const getSmsFormatURL = (code:string , mobileNumber:string, message?:string) => {
-    return `SMSTO:${code+mobileNumber}:${message}`
+    if(message?.length! > 1){
+        return `SMSTO:${mobileNumber}:${message}`
+    }
+    return `SMSTO:${mobileNumber}`
 
 }
 

@@ -12,14 +12,15 @@ import { urlFormSchema, urlFormSchemaType } from "@/schema/url-schema"
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useUrlStore } from "@/hook/useUrlStore"
+import { useQrOptions } from "@/hook/useQrOptions"
 
 interface UrlFormProps {}
 
 const UrlForm = ({}: UrlFormProps) => {
-  const { setUrl } = useUrlStore((state) => ({
-    setUrl: state.setUrl,
+  const { setQrOptions } = useQrOptions((state) => ({
+    setQrOptions: state?.setQrOptions,
   }))
+
 
   const form = useForm<urlFormSchemaType>({
     resolver: zodResolver(urlFormSchema),
@@ -29,8 +30,9 @@ const UrlForm = ({}: UrlFormProps) => {
   })
 
   const onSubmit = (values: urlFormSchemaType) => {
-    setUrl(values?.url)
-    form.reset()
+    setQrOptions({data:values?.url})
+
+    form?.reset()
   }
 
   return (

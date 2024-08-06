@@ -15,14 +15,14 @@ import {
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useUrlStore } from "@/hook/useUrlStore"
 import { getInstagramFormatURL } from "@/lib/url-formatter"
+import { useQrOptions } from "@/hook/useQrOptions"
 
 interface InstagramFormProps {}
 
 const InstagramForm = ({}: InstagramFormProps) => {
-  const { setUrl } = useUrlStore((state) => ({
-    setUrl: state.setUrl,
+  const { setQrOptions } = useQrOptions((state) => ({
+    setQrOptions: state?.setQrOptions,
   }))
 
   const form = useForm<instagramFormSchemaType>({
@@ -34,8 +34,7 @@ const InstagramForm = ({}: InstagramFormProps) => {
 
   const onSubmit = (values: instagramFormSchemaType) => {
     const url = getInstagramFormatURL(values?.instagram)
-    setUrl(url)
-
+    setQrOptions({ data: url })
     form.reset()
   }
 
@@ -52,7 +51,10 @@ const InstagramForm = ({}: InstagramFormProps) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="https://www.instagram.com/johndoe" {...field} />
+                <Input
+                  placeholder="https://www.instagram.com/johndoe"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
