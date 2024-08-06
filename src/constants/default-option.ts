@@ -24,6 +24,9 @@ export const defaultQrOptions: Options = {
     mode: "Byte" as Mode,
     errorCorrectionLevel: "Q" as ErrorCorrectionLevel,
   },
+  backgroundOptions:{
+    color:"transparent"
+  },
   imageOptions: {
     hideBackgroundDots: true,
     imageSize: 0.6,

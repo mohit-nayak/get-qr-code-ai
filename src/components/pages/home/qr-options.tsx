@@ -13,7 +13,7 @@ interface QrOptionsProps {}
 const QrOptions = ({}: QrOptionsProps) => {
   return (
     <section>
-      <Accordion type="single" collapsible>
+      <Accordion defaultValue="item-2" type="single" collapsible>
         <AccordionItem value="item-1">
           <ContentTriggerButton
             title="Scan destination"
@@ -25,7 +25,7 @@ const QrOptions = ({}: QrOptionsProps) => {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-2">
+        <AccordionItem value="item-2" >
           <ContentTriggerButton
             title="Design your code (optional)"
             description="Enhance your code with custom design to maximize scans"

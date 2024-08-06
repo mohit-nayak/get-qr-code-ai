@@ -6,6 +6,7 @@ import LogoImageUploader from "./logo-image-uploader"
 import ColorsCard from "./colors-card"
 import { useQrOptions } from "@/hook/useQrOptions"
 import ShapeSelector from "./shape-selector"
+import FrameModifier from "./frame-modifier"
 
 interface DesignOptionsProps {}
 
@@ -52,6 +53,11 @@ const DesignOptions = ({}: DesignOptionsProps) => {
       <div className="mt-10">
         <p className="text-zinc-700">Choose a shape</p>
         <ShapeSelector />
+      </div>
+
+      <div className="mt-6">
+        <p className="text-zinc-700">Add a frame</p>
+        <FrameModifier />
       </div>
 
     </section>

@@ -5,12 +5,15 @@ import { defaultQrOptions } from "@/constants/default-option"
 
 interface useQrOptionsInterface {
   options: Options
+  hasFrame: boolean
+  sethasFrame: (value: boolean) => void
   setQrOptions: (newQrOptions: Options) => void
   setQrdotsOptions: (newdotsOptions: Options["dotsOptions"]) => void
 }
 
 export const useQrOptions = create<useQrOptionsInterface>((set) => ({
   options: defaultQrOptions,
+  hasFrame: false,
   setQrOptions: (newQrOptions) => {
     set((state) => ({ options: { ...state?.options, ...newQrOptions } }))
   },
@@ -23,4 +26,5 @@ export const useQrOptions = create<useQrOptionsInterface>((set) => ({
       },
     }))
   },
+  sethasFrame: (value) => set({ hasFrame: value }),
 }))

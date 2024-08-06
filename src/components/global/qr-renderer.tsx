@@ -7,9 +7,11 @@ import { useQrOptions } from "@/hook/useQrOptions"
 import { cn } from "@/lib/utils"
 
 export const QrRenderer = () => {
-  const { options, setQrOptions } = useQrOptions((state) => ({
+
+  const { options, setQrOptions, hasFrame } = useQrOptions((state) => ({
     options: state?.options,
     setQrOptions: state?.setQrOptions,
+    hasFrame: state?.hasFrame,
   }))
 
   const [qrCode] = useState<QRCodeStyling>(new QRCodeStyling(options))
@@ -33,16 +35,33 @@ export const QrRenderer = () => {
     })
   }
 
+  const shapeChange =
+    options?.shape === "circle" ? "rounded-full" : "rounded-lg"
+
   return (
-    <section className="flex items-center justify-center">
+    <section className="flex h-full items-center justify-center">
       <div
-        style={{ borderColor: options?.dotsOptions?.color }}
+        style={{
+          borderColor: options?.dotsOptions?.color,
+          backgroundColor: options?.dotsOptions?.color,
+        }}
         className={cn(
-          "flex items-center justify-center overflow-hidden border-4 ",
-          options?.shape === "circle" ? "rounded-full p-1" : "rounded-lg",
+          "relative flex size-[212px] items-center justify-center overflow-hidden",
+          shapeChange,
+          hasFrame ? "size-[255px]" : "size-[212px]",
         )}
       >
-        <div ref={ref} className="" />
+        {hasFrame && options?.shape !== "circle" && (
+          <>
+            <span className="absolute top-1.5 text-xs font-semibold text-white">
+              sdlkfj;alsdkfjasl;dfkj
+            </span>
+            <span className="absolute bottom-1.5 text-xs font-semibold text-white">
+              sdlkfj;alsdkfjasl;dfkj
+            </span>
+          </>
+        )}
+        <div ref={ref} className={cn("bg-white", shapeChange)} />
       </div>
     </section>
   )
