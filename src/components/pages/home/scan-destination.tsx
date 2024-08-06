@@ -30,6 +30,7 @@ const ScanDestination = ({}: ScanDestinationProps) => {
       <div className="mt-2 grid grid-cols-4 gap-2">
         {scanDestinationData?.map((data) => (
           <SelectCard
+            key={data?.id}
             currentIndex={currentIndex}
             data={data}
             handleToogleCard={handleToogleCard}

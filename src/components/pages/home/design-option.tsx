@@ -7,13 +7,15 @@ import ColorsCard from "./colors-card"
 import { useQrOptions } from "@/hook/useQrOptions"
 import ShapeSelector from "./shape-selector"
 import FrameModifier from "./frame-modifier"
+import QrInputText from "./qr-input-text"
 
 interface DesignOptionsProps {}
 
 const DesignOptions = ({}: DesignOptionsProps) => {
-  const { options, setQrdotsOptions } = useQrOptions((state) => ({
+  const { options, setQrdotsOptions  , hasFrame} = useQrOptions((state) => ({
     options: state?.options,
     setQrdotsOptions: state?.setQrdotsOptions,
+    hasFrame:state?.hasFrame
   }))
   const color = options?.backgroundOptions?.color!
 
@@ -59,6 +61,11 @@ const DesignOptions = ({}: DesignOptionsProps) => {
         <p className="text-zinc-700">Add a frame</p>
         <FrameModifier />
       </div>
+
+     {hasFrame && <div className="mt-6 w-full">
+        <p className="text-zinc-700">Add text to the top and bottom of your frame.</p>
+        <QrInputText />
+      </div>}
 
     </section>
   )

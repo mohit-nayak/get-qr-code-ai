@@ -1,39 +1,36 @@
 "use client"
 
-import { useEffect, useState, useRef, ElementRef } from "react"
-import QRCodeStyling from "qr-code-styling"
+import { useEffect, useRef, ElementRef, use } from "react"
 
 import { useQrOptions } from "@/hook/useQrOptions"
 import { cn } from "@/lib/utils"
+import { useQRCodeStyling } from "@/hook/useQrCodeStyling"
+import { defaultQrOptions } from "@/constants/default-option"
 
 export const QrRenderer = () => {
+  const { options, setQrOptions, hasFrame, bottomInput, topInput } =
+    useQrOptions((state) => ({
+      options: state?.options,
+      setQrOptions: state?.setQrOptions,
+      hasFrame: state?.hasFrame,
+      topInput: state?.topInput,
+      bottomInput: state?.bottomInput,
+    }))
 
-  const { options, setQrOptions, hasFrame } = useQrOptions((state) => ({
-    options: state?.options,
-    setQrOptions: state?.setQrOptions,
-    hasFrame: state?.hasFrame,
-  }))
-
-  const [qrCode] = useState<QRCodeStyling>(new QRCodeStyling(options))
   const ref = useRef<ElementRef<"div">>(null)
+  const qrCode = useQRCodeStyling(defaultQrOptions)
 
   useEffect(() => {
-    if (ref?.current) {
-      qrCode?.append(ref?.current)
+    if (qrCode) {
+      qrCode?.append(ref?.current!)
     }
-  }, [qrCode, ref])
+  }, [qrCode])
 
   useEffect(() => {
-    if (!qrCode) return
-    qrCode?.update(options)
-  }, [qrCode, options])
-
-  const onDownloadClick = () => {
-    if (!qrCode) return
-    qrCode?.download({
-      extension: "png",
-    })
-  }
+    if (qrCode) {
+      qrCode?.update(options)
+    }
+  }, [options, qrCode])
 
   const shapeChange =
     options?.shape === "circle" ? "rounded-full" : "rounded-lg"
@@ -54,10 +51,10 @@ export const QrRenderer = () => {
         {hasFrame && options?.shape !== "circle" && (
           <>
             <span className="absolute top-1.5 text-xs font-semibold text-white">
-              sdlkfj;alsdkfjasl;dfkj
+              {topInput}
             </span>
             <span className="absolute bottom-1.5 text-xs font-semibold text-white">
-              sdlkfj;alsdkfjasl;dfkj
+              {bottomInput}
             </span>
           </>
         )}
