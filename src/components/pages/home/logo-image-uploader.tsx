@@ -27,10 +27,8 @@ const LogoImageUploader = ({}: LogoImageUploaderProps) => {
   }
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e?.target?.files?.[0]
-    if (!file) {
-      return toast.error("Please upload an image")
-    }
+    const file = e?.target?.files?.[0]!
+    
     if (file?.size! > MAX_LOGO_UPLOAD_SIZE) {
       return toast.warning("Uploaded image exists the limit")
     }
@@ -56,7 +54,7 @@ const LogoImageUploader = ({}: LogoImageUploaderProps) => {
           onChange={handleImageChange}
           hidden
         />
-        <span className="line-clamp-1 flex items-center gap-2">
+        <span className="truncate flex items-center gap-2">
           <FilePlus className="size-5" />
           {logoFile ? logoFile?.name : "click to upload a file"}
         </span>

@@ -31,7 +31,7 @@ const SelectCard = ({
       )}
     >
       <Icon className="size-6" />
-      <span className="text-semibold text-sm">{label}</span>
+      <span className="font-semibold text-xs sm:text-sm line-clamp-1">{label}</span>
     </div>
   );
 };

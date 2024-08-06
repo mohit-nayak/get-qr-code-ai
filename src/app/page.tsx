@@ -8,16 +8,16 @@ interface pageProps {}
 
 const page = ({}: pageProps) => {
   return (
-    <Container className="h-screen">
+    <Container className="h-full min-h-screen">
       <section className="my-16">
-        <h2 className="text-xl font-bold">
+        <h2 className="text-xl font-bold sm:text-2xl">
           {PLATFORM_NAME}: Free QR Code Generator
         </h2>
 
-        <div className="mt-8 grid grid-cols-2 gap-2">
+        <div className="mt-8 grid grid-cols-1 gap-8 min-[1000px]:grid-cols-2 min-[1000px]:gap-6">
           <QrOptions />
 
-          <div className="flex flex-col gap-4">
+          <div className="mb-16 flex flex-col gap-4 min-[1000px]:mb-0">
             <PreviewQR />
             <DownloadButton />
           </div>

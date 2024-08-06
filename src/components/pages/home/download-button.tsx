@@ -5,8 +5,8 @@ interface DownloadButtonProps {}
 
 const DownloadButton = ({}: DownloadButtonProps) => {
   return (
-    <Button type="submit" form="main-form">
-      <ArrowDownToLine className="mr-2 size-4" />
+    <Button className="bg-gradient-to-r from-violet-500 to-fuchsia-400 font-bold" type="submit" form="main-form">
+      <ArrowDownToLine className="mr-2 size-5" />
       Download
     </Button>
   )

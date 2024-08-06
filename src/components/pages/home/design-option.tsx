@@ -12,12 +12,12 @@ import QrInputText from "./qr-input-text"
 interface DesignOptionsProps {}
 
 const DesignOptions = ({}: DesignOptionsProps) => {
-  const { options, setQrdotsOptions  , hasFrame} = useQrOptions((state) => ({
+  const { options, setQrdotsOptions, hasFrame } = useQrOptions((state) => ({
     options: state?.options,
     setQrdotsOptions: state?.setQrdotsOptions,
-    hasFrame:state?.hasFrame
+    hasFrame: state?.hasFrame,
   }))
-  const color = options?.backgroundOptions?.color!
+  const color = options?.dotsOptions?.color!
 
   const handleSetColor = useCallback(
     (newColor: string) => {
@@ -52,7 +52,7 @@ const DesignOptions = ({}: DesignOptionsProps) => {
         <LogoImageUploader />
       </div>
 
-      <div className="mt-10">
+      <div className="mt-12">
         <p className="text-zinc-700">Choose a shape</p>
         <ShapeSelector />
       </div>
@@ -62,11 +62,14 @@ const DesignOptions = ({}: DesignOptionsProps) => {
         <FrameModifier />
       </div>
 
-     {hasFrame && <div className="mt-6 w-full">
-        <p className="text-zinc-700">Add text to the top and bottom of your frame.</p>
-        <QrInputText />
-      </div>}
-
+      {hasFrame && options?.shape !== "circle" && (
+        <div className="mt-6 w-full">
+          <p className="text-zinc-700">
+            Add text to the top and bottom of your frame.
+          </p>
+          <QrInputText />
+        </div>
+      )}
     </section>
   )
 }

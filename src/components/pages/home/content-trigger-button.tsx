@@ -14,7 +14,7 @@ const ContentTriggerButton = ({
     <AccordionTrigger className="hover:no-underline">
       <div className="flex flex-col items-start">
         <span className="text-lg">{title}</span>
-        <p className="text-zinc-600">
+        <p className="text-zinc-600 line-clamp-1 text-start">
           {description}
         </p>
       </div>
