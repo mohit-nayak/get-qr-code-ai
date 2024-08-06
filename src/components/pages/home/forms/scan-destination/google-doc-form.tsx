@@ -1,0 +1,63 @@
+"use client"
+
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import {
+  googleDocFormSchema,
+  googleDocFormSchemaType,
+} from "@/schema/google-doc-schema"
+
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useQrOptions } from "@/hook/useQrOptions"
+
+interface GoogleDocFormProps {}
+
+const GoogleDocForm = ({}: GoogleDocFormProps) => {
+  const { setQrOptions } = useQrOptions((state) => ({
+    setQrOptions: state?.setQrOptions,
+  }))
+
+  const form = useForm<googleDocFormSchemaType>({
+    resolver: zodResolver(googleDocFormSchema),
+    defaultValues: {
+      googleDocURL: "",
+    },
+  })
+
+  const onSubmit = (values: googleDocFormSchemaType) => {
+    setQrOptions({ data: values?.googleDocURL })
+    form.reset()
+  }
+
+  return (
+    <Form {...form}>
+      <form
+        id="main-form"
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="px-1"
+      >
+        <FormField
+          control={form.control}
+          name="googleDocURL"
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <Input placeholder="docs.google.com" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      </form>
+    </Form>
+  )
+}
+
+export default GoogleDocForm
