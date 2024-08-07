@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, ElementRef } from "react"
+import ReactCurvedText from "react-curved-text"
 
 import { cn } from "@/lib/utils"
 import { useQrOptions } from "@/hook/useQrOptions"
@@ -32,10 +33,12 @@ export const QrRenderer = () => {
     }
   }, [options, qrCode])
 
-
-
   const shapeChange =
     options?.shape === "circle" ? "rounded-full" : "rounded-lg"
+
+  const textProps = {
+    style: { fontSize: 12, fill: "white", fontWeight: "600" },
+  }
 
   return (
     <section className="flex h-full items-center justify-center">
@@ -50,7 +53,48 @@ export const QrRenderer = () => {
           hasFrame ? "size-[255px]" : "size-[212px]",
         )}
       >
-        {hasFrame && options?.shape !== "circle" && (
+        {hasFrame && options?.shape === "circle" && (
+          <>
+            <ReactCurvedText
+              width={300}
+              height={300}
+              cx={150}
+              cy={150}
+              rx={110}
+              ry={110}
+              startOffset={164}
+              svgProps={{
+                style: {
+                  position: "absolute",
+                  rotate: `-${topInput?.length * 1.2}deg`,
+                },
+              }}
+              text={topInput}
+              reversed
+              textProps={textProps}
+            />
+
+            <ReactCurvedText
+              width={300}
+              height={300}
+              cx={150}
+              cy={150}
+              rx={117}
+              ry={117}
+              startOffset={180}
+              svgProps={{
+                style: {
+                  position: "absolute",
+                  rotate: `${bottomInput?.length * 1.2}deg`,
+                },
+              }}
+              text={bottomInput}
+              textProps={textProps}
+            />
+          </>
+        )}
+
+        {hasFrame && options?.shape === "square" && (
           <>
             <span className="absolute top-1.5 text-xs font-semibold text-white">
               {topInput}

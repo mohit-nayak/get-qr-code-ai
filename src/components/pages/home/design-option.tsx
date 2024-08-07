@@ -62,7 +62,7 @@ const DesignOptions = ({}: DesignOptionsProps) => {
         <FrameModifier />
       </div>
 
-      {hasFrame && options?.shape !== "circle" && (
+      {hasFrame && (
         <div className="mt-6 w-full">
           <p className="text-zinc-700">
             Add text to the top and bottom of your frame.

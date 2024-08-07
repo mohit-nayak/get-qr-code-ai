@@ -31,6 +31,7 @@
     "next-themes": "^0.3.0",
     "qr-code-styling": "^1.6.0-rc.1",
     "react": "^18.3.1",
+    "react-curved-text": "^3.0.1",
     "react-dom": "^18",
     "react-hook-form": "^7.52.2",
     "sonner": "^1.5.0",
@@ -40,8 +41,10 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@types/d3": "^7.4.3",
     "@types/node": "^20",
     "@types/react": "^18",
+    "@types/react-curved-text": "^2.0.3",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
