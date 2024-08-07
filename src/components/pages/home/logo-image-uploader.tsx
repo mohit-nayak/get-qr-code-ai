@@ -38,7 +38,7 @@ const LogoImageUploader = ({}: LogoImageUploaderProps) => {
 
   return (
     <form
-      id="main-form"
+      id="logo-form"
       onSubmit={onSubmit}
       className="mt-2 h-14 w-full rounded-md border border-zinc-200 px-4"
     >
