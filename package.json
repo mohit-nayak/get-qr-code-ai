@@ -41,7 +41,6 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
-    "@types/d3": "^7.4.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-curved-text": "^2.0.3",
