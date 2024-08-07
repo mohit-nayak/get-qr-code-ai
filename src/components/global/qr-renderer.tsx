@@ -33,6 +33,7 @@ export const QrRenderer = () => {
     }
   }, [options, qrCode])
 
+  
   const shapeChange =
     options?.shape === "circle" ? "rounded-full" : "rounded-lg"
 
