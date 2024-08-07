@@ -4,7 +4,8 @@ interface PreviewQRProps {}
 
 const PreviewQR = ({}: PreviewQRProps) => {
   return (
-    <section className="w-full h-[19rem] rounded-md bg-gray-100 p-4">
+    <section className="w-full h-[19rem] rounded-md bg-gray-100 p-4 border border-zinc-200">
+      
       <p className="w-full text-center text-xs font-medium text-zinc-500">
         This is a preview of your code.
       </p>

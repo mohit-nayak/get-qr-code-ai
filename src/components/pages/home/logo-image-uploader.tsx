@@ -1,7 +1,7 @@
 "use client"
 
 import { ChangeEvent,  useState } from "react"
-import { FilePlus } from "lucide-react"
+import { FilePlus,  Sparkles } from "lucide-react"
 import { toast } from "sonner"
 
 import { MAX_LOGO_UPLOAD_SIZE } from "@/config/platform-config"
@@ -60,8 +60,9 @@ const LogoImageUploader = ({}: LogoImageUploaderProps) => {
         </span>
 
         <div className="flex items-center gap-2">
-          <span className={cn(buttonVariants())}>
+          <span className={cn(buttonVariants({className:"bg-gradient-to-r from-indigo-400 to-purple-600"}))}>
             {logoFile ? "Change" : "Upload"}
+            <Sparkles className="ml-2 size-4" />
           </span>
         </div>
       </label>

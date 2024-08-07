@@ -13,6 +13,7 @@ import { urlFormSchema, urlFormSchemaType } from "@/schema/url-schema"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useQrOptions } from "@/hook/useQrOptions"
+import { useAuthCallback } from "@/hook/auth/useAuthCallback"
 
 interface UrlFormProps {}
 
@@ -21,7 +22,6 @@ const UrlForm = ({}: UrlFormProps) => {
     setQrOptions: state?.setQrOptions,
   }))
 
-
   const form = useForm<urlFormSchemaType>({
     resolver: zodResolver(urlFormSchema),
     defaultValues: {
@@ -29,11 +29,10 @@ const UrlForm = ({}: UrlFormProps) => {
     },
   })
 
-  const onSubmit = (values: urlFormSchemaType) => {
-    setQrOptions({data:values?.url})
-
+  const onSubmit = useAuthCallback<urlFormSchemaType>((value) => {
+    setQrOptions({ data: value?.url })
     form?.reset()
-  }
+  })
 
   return (
     <Form {...form}>
