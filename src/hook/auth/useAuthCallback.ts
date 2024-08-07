@@ -1,3 +1,5 @@
+"use client"
+
 import { useSignInWithGoogle } from "./useSignInWithGoogle"
 import { useUser } from "./useUser"
 

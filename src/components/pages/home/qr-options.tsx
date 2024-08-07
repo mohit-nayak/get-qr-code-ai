@@ -14,14 +14,10 @@ import { useDefaultOption } from "@/hook/useDefaultOption"
 interface QrOptionsProps {}
 
 const QrOptions = ({}: QrOptionsProps) => {
- 
-  const { currentTab  , setCurrentTab} = useDefaultOption((state) => ({
+  const { currentTab, setCurrentTab } = useDefaultOption((state) => ({
     currentTab: state?.currentTab,
     setCurrentTab: state?.setCurrentTab,
   }))
-
-
-  console.log(currentTab)
 
   return (
     <section>

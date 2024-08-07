@@ -1,3 +1,5 @@
+"use client"
+
 import countries from "country-data/data/countries.json"
 
 const formattedCountries = countries?.flatMap(

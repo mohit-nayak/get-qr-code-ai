@@ -1,3 +1,5 @@
+"use client"
+
 import { IconProps } from "@/components/shared/icons";
 import type { destinationEnum } from "@/constants/destination";
 import { cn } from "@/lib/utils";

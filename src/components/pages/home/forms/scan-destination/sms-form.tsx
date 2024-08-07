@@ -13,11 +13,11 @@ import { smsFormSchema, smsFormSchemaType } from "@/schema/sms-schema"
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useUrlStore } from "@/hook/useUrlStore"
 import { Textarea } from "@/components/ui/textarea"
 import { CountrySelect } from "@/components/global/country-select"
 import { getSmsFormatURL } from "@/lib/url-formatter"
 import { useQrOptions } from "@/hook/useQrOptions"
+import { useAuthCallback } from "@/hook/auth/useAuthCallback"
 
 interface SmsFormProps {}
 
@@ -35,7 +35,7 @@ const SmsForm = ({}: SmsFormProps) => {
     },
   })
 
-  const onSubmit = (values: smsFormSchemaType) => {
+  const onSubmit = useAuthCallback<smsFormSchemaType>((values) => {
     const finalUrl = getSmsFormatURL(
       value,
       values?.phoneNumber,
@@ -43,7 +43,7 @@ const SmsForm = ({}: SmsFormProps) => {
     )
     setQrOptions({data:finalUrl})
     form?.reset()
-  }
+  })
 
   return (
     <Form {...form}>

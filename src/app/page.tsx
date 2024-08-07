@@ -7,7 +7,6 @@ import { PLATFORM_NAME } from "@/config/platform-config"
 interface pageProps {}
 
 const page = ({}: pageProps) => {
-
   return (
     <Container className="h-full min-h-screen">
       <section className="my-16">

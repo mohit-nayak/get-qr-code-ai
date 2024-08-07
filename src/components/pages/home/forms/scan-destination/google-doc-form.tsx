@@ -16,6 +16,7 @@ import {
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useQrOptions } from "@/hook/useQrOptions"
+import { useAuthCallback } from "@/hook/auth/useAuthCallback"
 
 interface GoogleDocFormProps {}
 
@@ -31,10 +32,10 @@ const GoogleDocForm = ({}: GoogleDocFormProps) => {
     },
   })
 
-  const onSubmit = (values: googleDocFormSchemaType) => {
+  const onSubmit = useAuthCallback<googleDocFormSchemaType>((values) => {
     setQrOptions({ data: values?.googleDocURL })
     form.reset()
-  }
+  })
 
   return (
     <Form {...form}>

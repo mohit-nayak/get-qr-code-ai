@@ -17,6 +17,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { getInstagramFormatURL } from "@/lib/url-formatter"
 import { useQrOptions } from "@/hook/useQrOptions"
+import { useAuthCallback } from "@/hook/auth/useAuthCallback"
 
 interface InstagramFormProps {}
 
@@ -32,11 +33,11 @@ const InstagramForm = ({}: InstagramFormProps) => {
     },
   })
 
-  const onSubmit = (values: instagramFormSchemaType) => {
+  const onSubmit = useAuthCallback<instagramFormSchemaType>((values) => {
     const url = getInstagramFormatURL(values?.instagram)
     setQrOptions({ data: url })
     form.reset()
-  }
+  })
 
   return (
     <Form {...form}>

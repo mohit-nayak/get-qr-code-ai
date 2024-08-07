@@ -1,4 +1,3 @@
-import { destinationEnum } from "@/constants/destination"
 import EmailForm from "./email-form"
 import FaceBookForm from "./facebook-form"
 import FileForm from "./file-form"
@@ -7,6 +6,8 @@ import InstagramForm from "./instagram-form"
 import SmsForm from "./sms-form"
 import UrlForm from "./url-form"
 import YoutubeForm from "./youtube-form"
+
+import { destinationEnum } from "@/constants/destination"
 
 interface ScanDestinationFormProps {
   currentIndex: number

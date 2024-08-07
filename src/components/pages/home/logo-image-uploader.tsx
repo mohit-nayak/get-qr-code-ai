@@ -62,7 +62,7 @@ const LogoImageUploader = ({}: LogoImageUploaderProps) => {
         <div className="flex items-center gap-2">
           <span className={cn(buttonVariants({className:"bg-gradient-to-r from-indigo-400 to-purple-600"}))}>
             {logoFile ? "Change" : "Upload"}
-            <Sparkles className="ml-2 size-4" />
+            <Sparkles className="ml-2 size-4 fill-white" />
           </span>
         </div>
       </label>

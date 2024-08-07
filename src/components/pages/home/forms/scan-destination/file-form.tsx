@@ -1,7 +1,10 @@
-import { MAX_FILE_UPLOAD_SIZE } from "@/config/platform-config"
-import { CirclePlus } from "lucide-react"
+"use client"
+
 import { useState } from "react"
 import { toast } from "sonner"
+
+import { MAX_FILE_UPLOAD_SIZE } from "@/config/platform-config"
+import { CirclePlus } from "lucide-react"
 
 interface FileFormProps {}
 
@@ -11,7 +14,6 @@ const FileForm = ({}: FileFormProps) => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(file)
     if (!file) {
       return toast.error("Please upload a file")
     }
