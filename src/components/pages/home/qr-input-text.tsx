@@ -19,7 +19,7 @@ const QrInputText = ({}: QrInputTextProps) => {
         <Input
           onChange={(e) => setTopText(e?.target?.value)}
           placeholder="enter some text here..."
-          maxLength={22}
+          maxLength={30}
         />
       </div>
       <div className="w-full space-y-1">
@@ -27,7 +27,7 @@ const QrInputText = ({}: QrInputTextProps) => {
         <Input
           onChange={(e) => setBottomText(e?.target?.value)}
           placeholder="enter some text here..."
-          maxLength={22}
+          maxLength={30}
         />
       </div>
     </div>
