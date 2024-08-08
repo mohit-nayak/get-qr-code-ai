@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useQrOptions } from "@/hook/useQrOptions"
 import { useAuthCallback } from "@/hook/auth/useAuthCallback"
 import { PLATFORM_URL } from "@/config/platform-config"
+import { useHtmlDownloader } from "@/hook/useHtmlDownloader"
 
 interface UrlFormProps {}
 
@@ -22,6 +23,8 @@ const UrlForm = ({}: UrlFormProps) => {
   const { setQrOptions } = useQrOptions((state) => ({
     setQrOptions: state?.setQrOptions,
   }))
+
+  const {handleClick}  = useHtmlDownloader()
 
   const form = useForm<urlFormSchemaType>({
     resolver: zodResolver(urlFormSchema),
@@ -32,6 +35,7 @@ const UrlForm = ({}: UrlFormProps) => {
 
   const onSubmit = useAuthCallback<urlFormSchemaType>((value) => {
     setQrOptions({ data: value?.url })
+    handleClick()
     form?.reset()
   })
 

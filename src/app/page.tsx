@@ -15,7 +15,7 @@ const page = ({}: pageProps) => {
 
         <div className="mt-8 grid grid-cols-1 gap-8 min-[1000px]:grid-cols-2 min-[1000px]:gap-6">
           <QrOptions />
-          <PreviewQR />
+          <PreviewQR/>
         </div>
       </section>
     </Container>

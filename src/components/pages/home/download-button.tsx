@@ -19,6 +19,10 @@ const DownloadButton = ({ className, ...props }: DownloadButtonProps) => {
     currentTab: state?.currentTab,
   }))
 
+  const { IsDownloading } = useQrOptions((state) => ({
+    IsDownloading: state?.IsDownloading,
+  }))
+
   const hasNoURL = !!options?.data
 
   const handleToogle = () => {
@@ -38,6 +42,7 @@ const DownloadButton = ({ className, ...props }: DownloadButtonProps) => {
       type={hasNoURL ? "submit" : "button"}
       form={hasNoURL ? "main-form" : ""}
       onClick={handleToogle}
+      disabled={IsDownloading}
       {...props}
     >
       <ArrowDownToLine className="mr-2 size-5" />

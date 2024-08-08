@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 import { useQrOptions } from "@/hook/useQrOptions"
 import { useQRCodeStyling } from "@/hook/useQrCodeStyling"
 import { defaultQrOptions } from "@/constants/default-option"
+import { useGlobalRef } from "@/provider/provider"
 
 export const QrRenderer = () => {
   const { options, setQrOptions, hasFrame, bottomInput, topInput } =
@@ -18,8 +19,11 @@ export const QrRenderer = () => {
       bottomInput: state?.bottomInput,
     }))
 
+
   const ref = useRef<ElementRef<"div">>(null)
   const qrCode = useQRCodeStyling(defaultQrOptions)
+  const divRef = useGlobalRef()
+
 
   useEffect(() => {
     if (qrCode) {
@@ -42,7 +46,7 @@ export const QrRenderer = () => {
   }
 
   return (
-    <section className="flex h-full items-center justify-center">
+    <div ref={divRef} className="flex h-full items-center justify-center">
       <div
         style={{
           borderColor: options?.dotsOptions?.color,
@@ -107,6 +111,6 @@ export const QrRenderer = () => {
         )}
         <div ref={ref} className={cn("bg-white", shapeChange)} />
       </div>
-    </section>
+    </div>
   )
 }

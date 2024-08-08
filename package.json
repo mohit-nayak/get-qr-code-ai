@@ -26,6 +26,7 @@
     "cmdk": "^1.0.0",
     "country-data": "^0.0.31",
     "firebase": "^10.12.5",
+    "html-to-image": "^1.11.11",
     "lucide-react": "^0.424.0",
     "next": "14.2.3",
     "next-themes": "^0.3.0",
