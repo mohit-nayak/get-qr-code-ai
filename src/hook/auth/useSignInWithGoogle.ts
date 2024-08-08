@@ -8,16 +8,15 @@ import { UserType } from "@/types/user-type"
 
 export const useSignInWithGoogle = () => {
   const provider = new GoogleAuthProvider()
-  const [user, setUser] = useState<UserType>(null)
   const [isLoading, setIsLoading] = useState(false)
 
-  const signInWithGoogle = async () => {
+  const signInWithGoogle = async ():Promise<UserType | Error> => {
     setIsLoading(true)
     try {
-      const { user} = await signInWithPopup(auth, provider)
-      setUser(user)
-    } catch (error) {
-      console.error("Error signing in with Google", error)
+      const { user } = await signInWithPopup(auth, provider)
+      return user
+    } catch (error:any) {
+      return error
     } finally {
       setIsLoading(false)
     }
@@ -25,7 +24,6 @@ export const useSignInWithGoogle = () => {
 
   return {
     isLoading,
-    user,
     signInWithGoogle,
   }
 }

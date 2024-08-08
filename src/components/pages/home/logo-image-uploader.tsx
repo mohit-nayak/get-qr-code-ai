@@ -17,7 +17,7 @@ const LogoImageUploader = ({}: LogoImageUploaderProps) => {
     setQrOptions: state?.setQrOptions,
   }))
 
-  const SizeInMB = MAX_LOGO_UPLOAD_SIZE / 1024 / 1024
+
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -66,11 +66,6 @@ const LogoImageUploader = ({}: LogoImageUploaderProps) => {
           </span>
         </div>
       </label>
-      <p className="mt-2 text-xs text-zinc-500">
-        A high-quality PNG is recommended. Supports PNG, JPG, and SVG up to{" "}
-        {SizeInMB}
-        MB.
-      </p>
     </form>
   )
 }

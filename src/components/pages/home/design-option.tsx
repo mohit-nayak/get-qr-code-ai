@@ -8,6 +8,8 @@ import { useQrOptions } from "@/hook/useQrOptions"
 import ShapeSelector from "./shape-selector"
 import FrameModifier from "./frame-modifier"
 import QrInputText from "./qr-input-text"
+import OptionWrapper from "@/components/global/option-wrapper"
+import { MAX_LOGO_UPLOAD_SIZE } from "@/config/platform-config"
 
 interface DesignOptionsProps {}
 
@@ -18,6 +20,7 @@ const DesignOptions = ({}: DesignOptionsProps) => {
     hasFrame: state?.hasFrame,
   }))
   const color = options?.dotsOptions?.color!
+  const SizeInMB = MAX_LOGO_UPLOAD_SIZE / 1024 / 1024
 
   const handleSetColor = useCallback(
     (newColor: string) => {
@@ -31,44 +34,44 @@ const DesignOptions = ({}: DesignOptionsProps) => {
 
   return (
     <section className="mt-2 px-2">
-      <div>
-        <p className="text-zinc-700">Pick a color</p>
-        <div className="my-3 flex flex-wrap gap-2">
-          {colorsList?.map((data: string) => (
-            <ColorsCard
-              color={data}
-              key={data}
-              selectedColor={color}
-              handleSetColor={handleSetColor}
-            />
-          ))}
-        </div>
-      </div>
+      <OptionWrapper title="Pick a color" childClassName="flex flex-wrap gap-2">
+        {colorsList?.map((data: string) => (
+          <ColorsCard
+            color={data}
+            key={data}
+            selectedColor={color}
+            handleSetColor={handleSetColor}
+          />
+        ))}
+      </OptionWrapper>
 
-      <div className="mt-6">
-        <p className="text-zinc-700">
-          Add your logo to the center of your code
-        </p>
+      <OptionWrapper
+        title="Add your logo to the center of your code"
+        parentClassName="mt-6"
+      >
         <LogoImageUploader />
-      </div>
+        <p className="mt-3 text-xs italic text-zinc-500">
+          A high-quality PNG is recommended. Supports PNG, JPG, and SVG up to{" "}
+          {SizeInMB}
+          MB.
+        </p>
+      </OptionWrapper>
 
-      <div className="mt-12">
-        <p className="text-zinc-700">Choose a shape</p>
+      <OptionWrapper parentClassName="mt-6" title="Choose a Shape.">
         <ShapeSelector />
-      </div>
+      </OptionWrapper>
 
-      <div className="mt-6">
-        <p className="text-zinc-700">Add a frame</p>
+      <OptionWrapper parentClassName="mt-6" title="Add a frame.">
         <FrameModifier />
-      </div>
+      </OptionWrapper>
 
       {hasFrame && (
-        <div className="mt-6 w-full">
-          <p className="text-zinc-700">
-            Add text to the top and bottom of your frame.
-          </p>
+        <OptionWrapper
+          parentClassName="mt-6"
+          title="Add text to the top and bottom of your frame."
+        >
           <QrInputText />
-        </div>
+        </OptionWrapper>
       )}
     </section>
   )
