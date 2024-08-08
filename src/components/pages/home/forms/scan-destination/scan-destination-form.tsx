@@ -7,29 +7,33 @@ import SmsForm from "./sms-form"
 import UrlForm from "./url-form"
 import YoutubeForm from "./youtube-form"
 
+import { destinationEnum } from "@/constants/destination"
+
 interface ScanDestinationFormProps {
   currentIndex: number
 }
 
 const ScanDestinationForm = ({ currentIndex }: ScanDestinationFormProps) => {
-  switch (currentIndex) {
-    case 0:
-      return <UrlForm />
-    case 1:
-      return <FileForm />
-    case 2:
-      return <SmsForm />
-    case 3:
-      return <EmailForm />
-    case 4:
-      return <InstagramForm />
-    case 5:
-      return <FaceBookForm />
-    case 6:
-      return <YoutubeForm />
-    case 7:
-      return <GoogleDocForm />
+  const { email, facebook, file, googleDoc, instagram, sms, url, youtube } =
+    destinationEnum
 
+  switch (currentIndex) {
+    case url:
+      return <UrlForm />
+    case file:
+      return <FileForm />
+    case sms:
+      return <SmsForm />
+    case email:
+      return <EmailForm />
+    case instagram:
+      return <InstagramForm />
+    case facebook:
+      return <FaceBookForm />
+    case youtube:
+      return <YoutubeForm />
+    case googleDoc:
+      return <GoogleDocForm />
     default:
       return <UrlForm />
   }

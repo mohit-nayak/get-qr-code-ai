@@ -1,3 +1,5 @@
+"use client"
+
 import { create } from "zustand"
 import type { Options } from "qr-code-styling"
 
@@ -5,10 +7,12 @@ import { defaultQrOptions } from "@/constants/default-option"
 
 interface useQrOptionsInterface {
   options: Options
-  hasFrame: boolean
+  hasFrame: boolean;
+  IsDownloading: boolean;
   bottomInput:string;
   topInput:string;
   sethasFrame: (value: boolean) => void
+  setIsDownloading: (value: boolean) => void
   setQrOptions: (newQrOptions: Options) => void
   setQrdotsOptions: (newdotsOptions: Options["dotsOptions"]) => void
   setBottomText:(newText:string) => void;
@@ -18,6 +22,7 @@ interface useQrOptionsInterface {
 export const useQrOptions = create<useQrOptionsInterface>((set) => ({
   options: defaultQrOptions,
   hasFrame: false,
+  IsDownloading:false,
   bottomInput:"",
   topInput:"",
   setQrOptions: (newQrOptions) => {
@@ -33,6 +38,8 @@ export const useQrOptions = create<useQrOptionsInterface>((set) => ({
     }))
   },
   sethasFrame: (value) => set({ hasFrame: value }),
+  setIsDownloading: (value) => set({ IsDownloading: value }),
   setBottomText:(newText) => set({bottomInput:newText}) ,
-  setTopText:(newText) => set({topInput:newText}) 
+  setTopText:(newText) => set({topInput:newText}) ,
+
 }))

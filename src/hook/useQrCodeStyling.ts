@@ -1,7 +1,10 @@
+"use client"
+
 import { useEffect, useState } from "react"
 
 import type QRCodeStylingType from "qr-code-styling"
 import type { Options } from "qr-code-styling"
+import { toast } from "sonner"
 
 export const useQRCodeStyling = (
   options: Options,
@@ -15,6 +18,7 @@ export const useQRCodeStyling = (
         const qrCodeStyling: QRCodeStylingType = new QRCodeStylingLib(options)
         setQrCode(qrCodeStyling)
       } catch (error) {
+        toast?.error("Failed to load qr-code")
         console.error("Failed to load qr-code-styling library:", error)
       }
     }

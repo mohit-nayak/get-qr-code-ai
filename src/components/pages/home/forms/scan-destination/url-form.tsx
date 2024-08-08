@@ -13,6 +13,9 @@ import { urlFormSchema, urlFormSchemaType } from "@/schema/url-schema"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useQrOptions } from "@/hook/useQrOptions"
+import { useAuthCallback } from "@/hook/auth/useAuthCallback"
+import { PLATFORM_URL } from "@/config/platform-config"
+import { useHtmlDownloader } from "@/hook/useHtmlDownloader"
 
 interface UrlFormProps {}
 
@@ -21,6 +24,7 @@ const UrlForm = ({}: UrlFormProps) => {
     setQrOptions: state?.setQrOptions,
   }))
 
+  const {handleClick}  = useHtmlDownloader()
 
   const form = useForm<urlFormSchemaType>({
     resolver: zodResolver(urlFormSchema),
@@ -29,11 +33,11 @@ const UrlForm = ({}: UrlFormProps) => {
     },
   })
 
-  const onSubmit = (values: urlFormSchemaType) => {
-    setQrOptions({data:values?.url})
-
+  const onSubmit = useAuthCallback<urlFormSchemaType>((value) => {
+    setQrOptions({ data: value?.url })
+    handleClick()
     form?.reset()
-  }
+  })
 
   return (
     <Form {...form}>
@@ -48,7 +52,7 @@ const UrlForm = ({}: UrlFormProps) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="http://www.flowcode.com" {...field} />
+                <Input placeholder={PLATFORM_URL} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

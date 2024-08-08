@@ -7,13 +7,14 @@ import SelectCard from "@/components/pages/home/select-card"
 import ScanDestinationForm from "@/components/pages/home/forms/scan-destination/scan-destination-form"
 import { useQrOptions } from "@/hook/useQrOptions"
 import { DEFAULT_PLATFORM_URL } from "@/config/platform-config"
+import OptionWrapper from "@/components/global/option-wrapper"
 
 interface ScanDestinationProps {}
 
 const ScanDestination = ({}: ScanDestinationProps) => {
   const [currentIndex, setCurrentIndex] = useState<number>(destinationEnum?.url)
 
-  const { setQrOptions , options } = useQrOptions((state) => ({
+  const { setQrOptions, options } = useQrOptions((state) => ({
     setQrOptions: state?.setQrOptions,
     options: state?.options,
   }))
@@ -21,15 +22,22 @@ const ScanDestination = ({}: ScanDestinationProps) => {
   const handleToogleCard = useCallback(
     (value: number) => {
       if (currentIndex === value) return
-      setQrOptions({data:DEFAULT_PLATFORM_URL})
+      setQrOptions({ data: DEFAULT_PLATFORM_URL })
       setCurrentIndex(value)
     },
     [currentIndex],
   )
 
   return (
-    <div>
-      <div className="mt-2 grid grid-cols-4 gap-2">
+    <>
+      <div className="my-5">
+        <ScanDestinationForm currentIndex={currentIndex} />
+      </div>
+
+      <OptionWrapper
+        title="Select an option..."
+        childClassName="grid grid-cols-3 min-[500px]:grid-cols-4 min-[1000px]:grid-cols-3  min-[1210px]:grid-cols-4 gap-2"
+      >
         {scanDestinationData?.map((data) => (
           <SelectCard
             key={data?.id}
@@ -38,12 +46,8 @@ const ScanDestination = ({}: ScanDestinationProps) => {
             handleToogleCard={handleToogleCard}
           />
         ))}
-      </div>
-
-      <div className="my-5">
-        <ScanDestinationForm currentIndex={currentIndex} />
-      </div>
-    </div>
+      </OptionWrapper>
+    </>
   )
 }
 

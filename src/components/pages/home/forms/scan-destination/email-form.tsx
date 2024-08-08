@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Textarea } from "@/components/ui/textarea"
 import { getEmailFormatURL } from "@/lib/url-formatter"
 import { useQrOptions } from "@/hook/useQrOptions"
+import { useAuthCallback } from "@/hook/auth/useAuthCallback"
 
 interface EmailFormProps {}
 
@@ -32,12 +33,12 @@ const EmailForm = ({}: EmailFormProps) => {
     },
   })
 
-  const onSubmit = (values: EmailFormSchemaType) => {
+  const onSubmit = useAuthCallback<EmailFormSchemaType>((values) => {
     const { email, message, subject } = values
     const url = getEmailFormatURL(email, subject, message)
     setQrOptions({data:url})
     form.reset()
-  }
+  })
 
   return (
     <Form {...form}>

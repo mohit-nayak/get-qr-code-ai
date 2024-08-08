@@ -13,6 +13,7 @@ import { youtubeFormSchema, youtubeFormSchemaType } from "@/schema/youtube-schem
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useQrOptions } from "@/hook/useQrOptions"
+import { useAuthCallback } from "@/hook/auth/useAuthCallback"
 
 interface UrlFormProps {}
 
@@ -29,10 +30,10 @@ const YoutubeForm = ({}: UrlFormProps) => {
     },
   })
 
-  const onSubmit = (values: youtubeFormSchemaType) => {
+  const onSubmit = useAuthCallback<youtubeFormSchemaType>((values) => {
     setQrOptions({data:values?.youtubeURL})
     form.reset()
-  }
+  })
 
   return (
     <Form {...form}>

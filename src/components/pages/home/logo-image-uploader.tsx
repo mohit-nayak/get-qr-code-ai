@@ -1,7 +1,7 @@
 "use client"
 
 import { ChangeEvent,  useState } from "react"
-import { FilePlus } from "lucide-react"
+import { FilePlus,  Sparkles } from "lucide-react"
 import { toast } from "sonner"
 
 import { MAX_LOGO_UPLOAD_SIZE } from "@/config/platform-config"
@@ -17,7 +17,7 @@ const LogoImageUploader = ({}: LogoImageUploaderProps) => {
     setQrOptions: state?.setQrOptions,
   }))
 
-  const SizeInMB = MAX_LOGO_UPLOAD_SIZE / 1024 / 1024
+
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -38,7 +38,7 @@ const LogoImageUploader = ({}: LogoImageUploaderProps) => {
 
   return (
     <form
-      id="main-form"
+      id="logo-form"
       onSubmit={onSubmit}
       className="mt-2 h-14 w-full rounded-md border border-zinc-200 px-4"
     >
@@ -60,16 +60,12 @@ const LogoImageUploader = ({}: LogoImageUploaderProps) => {
         </span>
 
         <div className="flex items-center gap-2">
-          <span className={cn(buttonVariants())}>
+          <span className={cn(buttonVariants({className:"bg-gradient-to-r from-indigo-400 to-purple-600"}))}>
             {logoFile ? "Change" : "Upload"}
+            <Sparkles className="ml-2 size-4 fill-white" />
           </span>
         </div>
       </label>
-      <p className="mt-2 text-xs text-zinc-500">
-        A high-quality PNG is recommended. Supports PNG, JPG, and SVG up to{" "}
-        {SizeInMB}
-        MB.
-      </p>
     </form>
   )
 }

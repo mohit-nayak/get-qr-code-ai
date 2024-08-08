@@ -13,6 +13,7 @@ import { facebookFormSchema, facebookFormSchemaType } from "@/schema/facebook-sc
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useQrOptions } from "@/hook/useQrOptions"
+import { useAuthCallback } from "@/hook/auth/useAuthCallback"
 
 interface FacebookFormProps {}
 
@@ -28,10 +29,10 @@ const FacebookForm = ({}: FacebookFormProps) => {
     },
   })
 
-  const onSubmit = (values: facebookFormSchemaType) => {
+  const onSubmit = useAuthCallback<facebookFormSchemaType>((values) => {
     setQrOptions({data:values?.facebookURL})
     form.reset()
-  }
+  })
 
   return (
     <Form {...form}>
