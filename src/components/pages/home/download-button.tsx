@@ -1,13 +1,15 @@
 "use client"
 
 import { ArrowDownToLine } from "lucide-react"
-import { Button } from "@/components/ui/button"
+
+import { Button, ButtonProps } from "@/components/ui/button"
 import { useDefaultOption } from "@/hook/useDefaultOption"
 import { useQrOptions } from "@/hook/useQrOptions"
+import { cn } from "@/lib/utils"
 
-interface DownloadButtonProps {}
+interface DownloadButtonProps extends ButtonProps {}
 
-const DownloadButton = ({}: DownloadButtonProps) => {
+const DownloadButton = ({ className, ...props }: DownloadButtonProps) => {
   const { options } = useQrOptions((state) => ({
     options: state?.options,
   }))
@@ -21,18 +23,22 @@ const DownloadButton = ({}: DownloadButtonProps) => {
 
   const handleToogle = () => {
     if (!hasNoURL) return
-    
-    if(!currentTab?.includes('item-1')){
-      setCurrentTab([...currentTab , "item-1"])
+
+    if (!currentTab?.includes("item-1")) {
+      setCurrentTab([...currentTab, "item-1"])
     }
   }
 
   return (
     <Button
-      className="bg-gradient-to-r from-violet-500 to-fuchsia-400 font-bold"
+      className={cn(
+        "w-full bg-gradient-to-r from-violet-500 to-fuchsia-400 font-bold",
+        className,
+      )}
       type={hasNoURL ? "submit" : "button"}
       form={hasNoURL ? "main-form" : ""}
       onClick={handleToogle}
+      {...props}
     >
       <ArrowDownToLine className="mr-2 size-5" />
       Download

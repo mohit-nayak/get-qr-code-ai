@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useQrOptions } from "@/hook/useQrOptions"
 import { useAuthCallback } from "@/hook/auth/useAuthCallback"
+import { PLATFORM_URL } from "@/config/platform-config"
 
 interface UrlFormProps {}
 
@@ -47,7 +48,7 @@ const UrlForm = ({}: UrlFormProps) => {
           render={({ field }) => (
             <FormItem>
               <FormControl>
-                <Input placeholder="http://www.flowcode.com" {...field} />
+                <Input placeholder={PLATFORM_URL} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

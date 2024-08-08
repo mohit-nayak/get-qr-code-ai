@@ -28,11 +28,11 @@ const SelectCard = ({
       key={id}
       onClick={() => handleToogleCard(value)}
       className={cn(
-        "flex h-20 w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-md border-2 transition-all duration-200",
+        "flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-md border-2 transition-all duration-200",
         currentIndex === value ? "border-black" : "border-zinc-300 shadow-sm hover:shadow-black/30",
       )}
     >
-      <Icon className="size-6" />
+      <Icon className="size-4" />
       <span className="font-semibold text-xs sm:text-sm line-clamp-1">{label}</span>
     </div>
   );

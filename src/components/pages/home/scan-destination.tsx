@@ -33,7 +33,7 @@ const ScanDestination = ({}: ScanDestinationProps) => {
         <ScanDestinationForm currentIndex={currentIndex} />
       </div>
 
-      <div className="mt-2 grid grid-cols-4 gap-2">
+      <div className="mt-2 grid grid-cols-3 min-[500px]:grid-cols-4 min-[1000px]:grid-cols-3  min-[1210px]:grid-cols-4 gap-2">
         {scanDestinationData?.map((data) => (
           <SelectCard
             key={data?.id}
