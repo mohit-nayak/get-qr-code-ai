@@ -20,9 +20,9 @@ export const defaultQrOptions: Options = {
   data: PLATFORM_URL,
   margin: 1.5,
   qrOptions: {
-    typeNumber:4 as TypeNumber,
+    typeNumber:0 as TypeNumber,
     mode: "Byte" as Mode,
-    errorCorrectionLevel: "M" as ErrorCorrectionLevel,
+    errorCorrectionLevel: "Q" as ErrorCorrectionLevel,
   },
   backgroundOptions:{
     color:"transparent"

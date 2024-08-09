@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useQrOptions } from "@/hook/useQrOptions"
 import { useAuthCallback } from "@/hook/auth/useAuthCallback"
+import { useHtmlDownloader } from "@/hook/useHtmlDownloader"
 
 interface FacebookFormProps {}
 
@@ -21,6 +22,7 @@ const FacebookForm = ({}: FacebookFormProps) => {
   const { setQrOptions } = useQrOptions((state) => ({
     setQrOptions: state?.setQrOptions,
   }))
+  const {handleClick}  = useHtmlDownloader()
 
   const form = useForm<facebookFormSchemaType>({
     resolver: zodResolver(facebookFormSchema),
@@ -31,6 +33,7 @@ const FacebookForm = ({}: FacebookFormProps) => {
 
   const onSubmit = useAuthCallback<facebookFormSchemaType>((values) => {
     setQrOptions({data:values?.facebookURL})
+    handleClick()
     form.reset()
   })
 

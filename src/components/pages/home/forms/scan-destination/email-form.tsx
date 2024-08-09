@@ -16,6 +16,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { getEmailFormatURL } from "@/lib/url-formatter"
 import { useQrOptions } from "@/hook/useQrOptions"
 import { useAuthCallback } from "@/hook/auth/useAuthCallback"
+import { useHtmlDownloader } from "@/hook/useHtmlDownloader"
 
 interface EmailFormProps {}
 
@@ -23,6 +24,7 @@ const EmailForm = ({}: EmailFormProps) => {
   const { setQrOptions } = useQrOptions((state) => ({
     setQrOptions: state?.setQrOptions,
   }))
+  const {handleClick}  = useHtmlDownloader()
 
   const form = useForm<EmailFormSchemaType>({
     resolver: zodResolver(EmailFormSchema),
@@ -37,6 +39,7 @@ const EmailForm = ({}: EmailFormProps) => {
     const { email, message, subject } = values
     const url = getEmailFormatURL(email, subject, message)
     setQrOptions({data:url})
+    handleClick()
     form.reset()
   })
 

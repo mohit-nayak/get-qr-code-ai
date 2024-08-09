@@ -17,6 +17,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useQrOptions } from "@/hook/useQrOptions"
 import { useAuthCallback } from "@/hook/auth/useAuthCallback"
+import { useHtmlDownloader } from "@/hook/useHtmlDownloader"
 
 interface GoogleDocFormProps {}
 
@@ -24,6 +25,7 @@ const GoogleDocForm = ({}: GoogleDocFormProps) => {
   const { setQrOptions } = useQrOptions((state) => ({
     setQrOptions: state?.setQrOptions,
   }))
+  const {handleClick}  = useHtmlDownloader()
 
   const form = useForm<googleDocFormSchemaType>({
     resolver: zodResolver(googleDocFormSchema),
@@ -34,6 +36,7 @@ const GoogleDocForm = ({}: GoogleDocFormProps) => {
 
   const onSubmit = useAuthCallback<googleDocFormSchemaType>((values) => {
     setQrOptions({ data: values?.googleDocURL })
+    handleClick()
     form.reset()
   })
 

@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useQrOptions } from "@/hook/useQrOptions"
 import { useAuthCallback } from "@/hook/auth/useAuthCallback"
+import { useHtmlDownloader } from "@/hook/useHtmlDownloader"
 
 interface UrlFormProps {}
 
@@ -22,6 +23,7 @@ const YoutubeForm = ({}: UrlFormProps) => {
   const { setQrOptions } = useQrOptions((state) => ({
     setQrOptions: state?.setQrOptions,
   }))
+  const {handleClick}  = useHtmlDownloader()
 
   const form = useForm<youtubeFormSchemaType>({
     resolver: zodResolver(youtubeFormSchema),
@@ -32,6 +34,7 @@ const YoutubeForm = ({}: UrlFormProps) => {
 
   const onSubmit = useAuthCallback<youtubeFormSchemaType>((values) => {
     setQrOptions({data:values?.youtubeURL})
+    handleClick()
     form.reset()
   })
 

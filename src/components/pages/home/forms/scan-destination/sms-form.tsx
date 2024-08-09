@@ -18,6 +18,7 @@ import { CountrySelect } from "@/components/global/country-select"
 import { getSmsFormatURL } from "@/lib/url-formatter"
 import { useQrOptions } from "@/hook/useQrOptions"
 import { useAuthCallback } from "@/hook/auth/useAuthCallback"
+import { useHtmlDownloader } from "@/hook/useHtmlDownloader"
 
 interface SmsFormProps {}
 
@@ -34,6 +35,7 @@ const SmsForm = ({}: SmsFormProps) => {
       message: "",
     },
   })
+  const {handleClick}  = useHtmlDownloader()
 
   const onSubmit = useAuthCallback<smsFormSchemaType>((values) => {
     const finalUrl = getSmsFormatURL(
@@ -42,6 +44,7 @@ const SmsForm = ({}: SmsFormProps) => {
       values?.message,
     )
     setQrOptions({data:finalUrl})
+    handleClick()
     form?.reset()
   })
 
